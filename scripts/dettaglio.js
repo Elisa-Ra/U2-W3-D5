@@ -57,9 +57,8 @@ fetch(url + id, {
     buttonGroup.className = "d-flex gap-3 mt-3 w-100"
 
     // Pulsante ELIMINA
-    const button_remove = document.createElement("button")
-    button_remove.className = "btn btn-danger flex-fill"
-    button_remove.innerText = "Elimina"
+    const button_remove = document.getElementById("btn_delete")
+
     button_remove.addEventListener("click", () => {
       fetch(`${url}${product._id}`, {
         method: "DELETE",
@@ -69,10 +68,23 @@ fetch(url + id, {
       })
         .then((res) => {
           if (res.ok) {
-            alert(
-              "Prodotto eliminato con successo, verrai reindirizzato alla home"
+            const modal = new bootstrap.Modal(
+              document.getElementById("successModal")
             )
-            window.location.href = "./index.html"
+            modal.show()
+            // chiudo il modal che chiede se vogliamo davvero eliminare un elemento
+            const del_modal = bootstrap.Modal.getInstance(
+              document.getElementById("deleteModal")
+            )
+            if (del_modal) del_modal.hide()
+            // Faccio sparire anche i pulsanti
+            document.getElementById("btn_edit")?.remove()
+            document.getElementById("mod_delete")?.remove()
+
+            // riporto alla home dopo 3 secondi
+            setTimeout(() => {
+              window.location.href = "./index.html"
+            }, 3000)
             col.remove()
           } else {
             throw new Error("Errore nella cancellazione del prodotto")
@@ -84,19 +96,14 @@ fetch(url + id, {
     })
 
     // PULSANTE MODIFICA (che mi porta alla pagina back-office per la modifica del prodotto)
-    const button_edit = document.createElement("a")
-    button_edit.className = "btn btn-warning flex-fill"
-    button_edit.innerText = "Modifica"
+    const button_edit = document.getElementById("btn_edit")
     button_edit.href = `./back-office.html?id=${product._id}`
-
-    buttonGroup.appendChild(button_edit)
-    buttonGroup.appendChild(button_remove)
 
     cardBody.appendChild(title)
     cardBody.appendChild(description)
     cardBody.appendChild(brand)
     cardBody.appendChild(price)
-    cardBody.appendChild(buttonGroup)
+
     card.appendChild(img)
     card.appendChild(cardBody)
     col.appendChild(card)

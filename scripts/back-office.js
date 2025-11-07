@@ -103,11 +103,18 @@ form.addEventListener("submit", (e) => {
   })
     .then((res) => {
       if (res.ok) {
-        // se è andato tutto bene
-        alert("PRODOTTO SALVATO!")
+        // se è andato tutto bene faccio aprire il modal con il costruttore di bootstrap
+        const modal = new bootstrap.Modal(
+          document.getElementById("successModal")
+        )
+        modal.show()
 
         // svuotiamo il form
         form.reset()
+        // reindirizzo alla home dopo 3 secondi
+        setTimeout(() => {
+          window.location.href = "./index.html"
+        }, 3000)
       } else {
         // se c'è qualche errore
         throw new Error(`Errore nella risposta del server: ${res.status}`)
