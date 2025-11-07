@@ -1,0 +1,21 @@
+.img-fixed {
+  height: 300px;
+  object-fit: fill;
+}
+
+.card {
+  height: 100%;
+}
+
+h1 {
+  font-family: "Spectral", serif;
+  margin: 0;
+}
+
+.card-title {
+  font-family: "Spectral", serif;
+}
+header,
+.card-title {
+  font-family: "Momo Trust Display", sans-serif;
+}

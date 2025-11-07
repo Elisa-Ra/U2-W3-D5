@@ -16,7 +16,7 @@ fetch(url + id, {
     const container = document.getElementById("product-detail")
 
     const col = document.createElement("div")
-    col.className = "col justify-content-center"
+    col.className = "col justify-content-center mb-4"
 
     // Card
     const card = document.createElement("div")
@@ -34,7 +34,7 @@ fetch(url + id, {
 
     // Nome
     const title = document.createElement("h5")
-    title.className = "card-title"
+    title.className = "card-title text-center"
     title.innerText = product.name
 
     // Descrizione

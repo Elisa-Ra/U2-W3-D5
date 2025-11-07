@@ -42,7 +42,7 @@ const getData = function () {
 
         // Titolo
         const title = document.createElement("h5")
-        title.className = "card-title"
+        title.className = "card-title text-center"
         title.innerText = product.name
 
         // Div dei pulsanti
@@ -51,7 +51,7 @@ const getData = function () {
 
         // Pulsante Dettaglio
         const button_detail = document.createElement("a")
-        button_detail.className = "btn btn-info flex-fill"
+        button_detail.className = "btn btn-info flex-fill text-light"
         button_detail.innerText = "Dettaglio"
         button_detail.href = `./dettaglio.html?id=${product._id}`
 
