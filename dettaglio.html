@@ -55,64 +55,69 @@
         </div>
       </nav>
       <div class="bg-info-subtle text-center py-1">
-        <h1 class="display-5 text-info">Elisa's Videogame Corner</h1>
+        <h1 class="display-5 text-info">Elisa's Videogames Corner</h1>
       </div>
     </header>
     <main class="flex-grow-1">
       <div class="container mt-5">
         <div id="product-detail" class="row justify-content-center"></div>
-        <!-- BOTTONE MODIFICA -->
-        <a class="btn btn-warning" id="btn_edit"> Modifica </a>
+        <!-- BTN GROUP -->
+        <div class="text-center">
+          <div class="btn-group" role="group" aria-label="Basic example"></div>
+          <!-- BOTTONE MODIFICA -->
+          <a class="btn btn-warning" id="btn_edit"> Modifica </a>
 
-        <!-- MODAL BOOTSTRAP -->
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#deleteModal"
-          id="mod_delete"
-        >
-          Elimina
-        </button>
+          <!-- MODAL BOOTSTRAP -->
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+            id="mod_delete"
+          >
+            Elimina
+          </button>
 
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="deleteModal"
-          tabindex="-1"
-          aria-labelledby="deleteModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header bg-info-subtle">
-                <h1 class="modal-title fs-5" id="deleteModalLabel">
-                  Sei sicuro di volere eliminare il gioco?
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="deleteModal"
+            tabindex="-1"
+            aria-labelledby="deleteModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-info-subtle">
+                  <h1 class="modal-title fs-5" id="deleteModalLabel">
+                    Sei sicuro di volere eliminare il gioco?
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
 
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Chiudi
-                </button>
-                <button type="reset" class="btn btn-danger" id="btn_delete">
-                  ELIMINA
-                </button>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Chiudi
+                  </button>
+                  <button type="reset" class="btn btn-danger" id="btn_delete">
+                    ELIMINA
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <!-- MODALE SUCCESSO ELIMINAZIONE -->
       <div
         class="modal fade"

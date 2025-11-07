@@ -30,6 +30,33 @@ if (id) {
       console.log("errore nel ripopolamento del form", err)
     })
 }
+
+//// FUNZIONE PER GESTIRE GLI ERRORI
+function showErrorModal(message, statusCode = null) {
+  const modalBody = document.querySelector("#errorModal .modal-body")
+
+  // Pulisco il contenuto precedente
+  modalBody.textContent = ""
+
+  // Creo un paragrafo per il messaggio
+  const msg = document.createElement("p")
+  msg.textContent = message
+  modalBody.appendChild(msg)
+
+  // se c'è lo statusCode aggiungo l'img del gatto
+  if (statusCode) {
+    const img = document.createElement("img")
+    img.src = `https://http.cat/${statusCode}`
+    img.alt = `Errore ${statusCode}`
+    img.className = "img-fluid rounded mt-2"
+    modalBody.appendChild(img)
+  }
+
+  // Mostra il modal
+  const errorModal = new bootstrap.Modal(document.getElementById("errorModal"))
+  errorModal.show()
+}
+
 // ///////////////////
 // Modello Prodotti
 // - name (string)
@@ -117,10 +144,14 @@ form.addEventListener("submit", (e) => {
         }, 3000)
       } else {
         // se c'è qualche errore
-        throw new Error(`Errore nella risposta del server: ${res.status}`)
+        showErrorModal(`Errore HTTP: ${res.status}`, res.status)
+        throw new Error(`Errore HTTP: ${res.status}`)
       }
     })
     .catch((err) => {
       console.log("PROBLEMA NEL SALVATAGGIO DEL PRODOTTO", err)
+      showErrorModal(
+        "Errore imprevisto. Controlla la connessione o riprova più tardi."
+      )
     })
 })

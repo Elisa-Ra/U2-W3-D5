@@ -2,6 +2,32 @@ const url = "https://striveschool-api.herokuapp.com/api/product/"
 const key =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTBkYWUyNGY0YmQ0NzAwMTU4NWIxZDgiLCJpYXQiOjE3NjI1MDQyMjgsImV4cCI6MTc2MzcxMzgyOH0.VeMbm7LhPMWsIIxG_K1RyhBfizA4xPQD50fq95q9_mI"
 
+//// FUNZIONE PER GESTIRE GLI ERRORI
+function showErrorModal(message, statusCode = null) {
+  const modalBody = document.querySelector("#errorModal .modal-body")
+
+  // Pulisco il contenuto precedente
+  modalBody.textContent = ""
+
+  // Creo un paragrafo per il messaggio
+  const msg = document.createElement("p")
+  msg.textContent = message
+  modalBody.appendChild(msg)
+
+  // se c'è lo statusCode aggiungo l'img del gatto
+  if (statusCode) {
+    const img = document.createElement("img")
+    img.src = `https://http.cat/${statusCode}`
+    img.alt = `Errore ${statusCode}`
+    img.className = "img-fluid rounded mt-2"
+    modalBody.appendChild(img)
+  }
+
+  // Mostra il modal
+  const errorModal = new bootstrap.Modal(document.getElementById("errorModal"))
+  errorModal.show()
+}
+////////////////////////7
 const getData = function () {
   fetch(url, {
     method: "GET",
@@ -12,11 +38,13 @@ const getData = function () {
     },
   })
     .then((res) => {
-      // Se otteniamo la response
-      console.log("RESPONSE", res)
-
-      return res.json() // <-- Attendo
+      if (!res.ok) {
+        showErrorModal(`Errore HTTP: ${res.status}`, res.status)
+        throw new Error(`Errore HTTP: ${res.status}`)
+      }
+      return res.json()
     })
+
     .then((data) => {
       const row = document.getElementById("products-row")
 
@@ -67,7 +95,10 @@ const getData = function () {
       })
     })
     .catch((err) => {
-      console.log("Errore nella request", err)
+      console.error("Errore nella request", err)
+      showErrorModal(
+        "Errore imprevisto. Controlla la connessione o riprova più tardi."
+      )
     })
 }
 
