@@ -70,7 +70,7 @@ const getData = function () {
 
         // Titolo
         const title = document.createElement("h5")
-        title.className = "card-title text-center"
+        title.className = "card-title text-center flex-grow-1"
         title.innerText = product.name
 
         // Div dei pulsanti
